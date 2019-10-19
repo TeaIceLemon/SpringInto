@@ -4,6 +4,7 @@ package pl.TeaIceLemon.SpringIntro.SpringIntro.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +16,13 @@ import pl.TeaIceLemon.SpringIntro.SpringIntro.repositories.UserRepository;
 @RequestMapping("/register")
 public class RegistrationController {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
     private final static Logger log = LoggerFactory.getLogger(RegistrationController.class);
 
     @Autowired
-    public RegistrationController(UserRepository userRepository) {
+    public RegistrationController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder= passwordEncoder;
     }
 
 
@@ -35,7 +38,8 @@ public class RegistrationController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setUsername(username);
-        user.setPassword(password);
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setPassword(encodedPassword);
         user.setActive(true);
 
         userRepository.save(user);
