@@ -23,6 +23,7 @@ public class HomePageController {
     @GetMapping
     public String prepareHomePage(Model model){
         List<Advert> advertList = advertRepository.findAllByOrderByPostedDesc();
-        return "";
+        model.addAttribute("adverts" , advertList);
+        return "/WEB-INF/views/home-page.jsp";
     }
 }

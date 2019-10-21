@@ -2,7 +2,7 @@ package pl.TeaIceLemon.SpringIntro.SpringIntro.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Controller;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class Advert {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
-    @Column(name = "owner_id")
+    @Column(name = "owner_id", insertable = false, updatable = false)
     private Long owner_id;
 
     @Override
