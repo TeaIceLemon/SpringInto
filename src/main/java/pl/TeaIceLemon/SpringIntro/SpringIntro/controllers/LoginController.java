@@ -16,6 +16,6 @@ public class LoginController {
 
     @PostMapping
     public String processLoginPage(){
-        return "";
+        return "redirect:/";
     }
 }
