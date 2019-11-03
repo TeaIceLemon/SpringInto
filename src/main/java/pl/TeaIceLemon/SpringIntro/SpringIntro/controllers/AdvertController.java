@@ -8,6 +8,7 @@ import pl.TeaIceLemon.SpringIntro.SpringIntro.repositories.AdvertRepository;
 import pl.TeaIceLemon.SpringIntro.SpringIntro.repositories.UserRepository;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Controller
 public class AdvertController {
@@ -25,7 +26,8 @@ public class AdvertController {
         User user = userRepository.findByUsername(username);
         Advert advert = new Advert();
         advert.setDescription(description);
-        advert.setOwner_id(user.getId());
+        advert.setOwner(user);
+        advert.setPosted(LocalDateTime.now());
         advert.setTitle(title);
         advertRepository.save(advert);
         return "redirect:/";

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<jsp:include page="fragments/main-menu.jsp"/>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
